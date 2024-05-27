@@ -34,7 +34,7 @@ Point = namedtuple('Point', 'x, y') # A named tuple is a basically a lightweight
 # That it contains keys that are hashed to a specific value. However unlike dictionaries it supports key-value and iteration.
 # We use a tuple here to store mulitple hashed immutable objects
 
-# In this case point is a way we use to store the position of the snake and food
+# In this case point is a way we use to store the position of the snake and food.
 
 class SnakeGameAI:
     def __init__(self, w = 640, h = 480) -> None: 
