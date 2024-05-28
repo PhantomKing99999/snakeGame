@@ -7,6 +7,8 @@ from collections import deque
 from model import Linear_QNet, QTrainer
 from snakeGame import SnakeGameAI, Direction, Point
 from helper import plot
+import os
+import globalVariables
 
 
 # Constants
@@ -109,13 +111,19 @@ class Agent:
         return final_move
 
 
-def train():
+def train(loadSave):
     plot_scores = []
     plot_mean_scores = []
     total_score = 0
     record = 0
     agent = Agent()
     game = SnakeGameAI()
+
+    model_folder_path = "./model/model.pth" # Loads previous weights
+    if(loadSave and os.path.exists(model_folder_path)):
+        agent.model.load_state_dict(torch.load(model_folder_path))
+        print("Weights Loaded!")
+
     while True:
         # Get the current state
         current_state = agent.get_state(game)
@@ -148,5 +156,9 @@ def train():
             plot_mean_scores.append(mean_score)
             plot(plot_scores, plot_mean_scores)
 
+            # Declare global variables for UI Updating
+            globalVariables.recordGlobal = record
+            globalVariables.gamesGlobal = agent.n_games
+
 if(__name__ == "__main__"):
-    train()
+    train(loadSave=True)

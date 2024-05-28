@@ -27,6 +27,9 @@ class Linear_QNet(nn.Module): # Create a class for the linear Q network. This cl
             os.makedirs(model_folder_path) # Makes folder named model
         file_path = os.path.join(model_folder_path, file_name) # Sets the file path to a combined path of the folder + the file name
         torch.save(self.state_dict(), file_path) # Saves the model into the path
+        
+
+    
 
 
 class QTrainer: # Create the Q Learning training model

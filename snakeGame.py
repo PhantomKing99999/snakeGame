@@ -5,7 +5,8 @@ import random
 from enum import Enum
 from collections import namedtuple
 import numpy as np
-
+import globalVariables
+from datetime import datetime
 
 # Declare Constants
 #rgb colors
@@ -60,6 +61,7 @@ class SnakeGameAI:
         self._place_food()
     
     def _place_food(self):
+        random.seed(datetime.now().timestamp())
         x = random.randint(0, (self.w-BLOCK_SIZE)//BLOCK_SIZE)*BLOCK_SIZE # Takes a random position 
         y = random.randint(0, (self.h-BLOCK_SIZE)//BLOCK_SIZE)*BLOCK_SIZE
         self.food = Point(x, y)
@@ -131,8 +133,17 @@ class SnakeGameAI:
             pygame.draw.rect(self.display, BLUE2, pygame.Rect(pt.x+4, pt.y+4, 12, 12)) # Outside (Outline) is lighter blue
         pygame.draw.rect(self.display, RED, pygame.Rect(self.food.x, self.food.y, BLOCK_SIZE, BLOCK_SIZE)) # Food is red
 
-        text = font.render(f"Score: {str(self.score)}", True, WHITE) # Display score top left
-        self.display.blit(text, [0, 0])
+        scoreText = font.render(f"Score: {str(self.score)}", True, WHITE) # Display score top left
+        self.display.blit(scoreText, [5, 50])
+        recordText = font.render(f"Record: {str(globalVariables.recordGlobal)}", True, WHITE) # Display record 
+        self.display.blit(recordText, [5, 25])
+        gamesText = font.render(f"Game No.{str(globalVariables.gamesGlobal)}", True, WHITE) # Display the No. of Games
+        self.display.blit(gamesText, [5, 0])
+
+        seconds = int((pygame.time.get_ticks()/1000))
+        minutes = int(seconds/60)
+        timeText = font.render(f"Time Elapsed: {str(minutes)}m, {str(seconds%60)}s", True, WHITE)
+        self.display.blit(timeText, [400, 0])
         pygame.display.flip()
 
     def _move(self, action):
