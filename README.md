@@ -11,3 +11,5 @@ cd snakeGame
 pip install -r requirements.txt
 
 python3 agent.py 
+
+Inspired by https://github.com/patrickloeber/snake-ai-pytorch
