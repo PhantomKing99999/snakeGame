@@ -1,0 +1,6 @@
+pytorch
+matplotlib
+IPython
+collections
+os
+helper
