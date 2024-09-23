@@ -18,3 +18,7 @@ To disable loading previous weights and to override previous weights replace tra
 
 Then Run
 python3 agent.py 
+
+Inspired by https://github.com/patrickloeber/snake-ai-pytorch
+Created following https://youtube.com/playlist?list=PLqnslRFeH2UrDh7vUmJ60YrmWd64mTTKV&si=3zcyFWhU9Ck-zgms 
+
