@@ -10,4 +10,11 @@ cd snakeGame
 
 pip install -r requirements.txt
 
+
+## Running the project
+
+Loading previous weights is enabled by default. 
+To disable loading previous weights and to override previous weights replace train(loadSave=True) with train(loadSave=False)
+
+Then Run
 python3 agent.py 
